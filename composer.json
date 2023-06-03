@@ -1,0 +1,20 @@
+{
+    "name": "justnk/themachine",
+    "description": "just php toolbox in Laravel",
+    "type": "library",
+    "require": {
+        "nesbot/carbon": "2.67.0",
+        "laravel/framework": "^8.75"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Machine\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "JustNK"
+        }
+    ]
+}
