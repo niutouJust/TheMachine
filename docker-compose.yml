@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+
+  test-composer:
+    image: "composer:${COMPOSER_VERSION}"
+    hostname: test-composer
+    networks:
+        - test
+    profiles: ['debug']
+    restart: always
+    command: '/bin/sh -c "while :; do sleep 10; done"'
+    volumes: 
+        - ./:${WORK_ROOT}
+    working_dir: ${WORK_ROOT}
+    environment:
+        TZ: 'PRC'
+
+networks: 
+    test:

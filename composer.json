@@ -3,8 +3,7 @@
     "description": "just php toolbox in Laravel",
     "type": "library",
     "require": {
-        "nesbot/carbon": "2.67.0",
-        "laravel/framework": "^8.75"
+        "nesbot/carbon": "2.67.0"
     },
     "license": "MIT",
     "autoload": {
@@ -16,5 +15,8 @@
         {
             "name": "JustNK"
         }
-    ]
+    ],
+    "require-dev": {
+        "laravel/framework": "^10.10"
+    }
 }
