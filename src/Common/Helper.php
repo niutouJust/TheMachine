@@ -84,7 +84,7 @@ class Helper {
 
     /**
      * Get a 16 string 
-     * 
+     *  @param int $length
      */
     public function getRand16String($length=16){
         if ($length > 60){
@@ -103,6 +103,7 @@ class Helper {
 
     /**
      * just a format to other format
+     * @param object $obj
      */
     public function getObjToJsonToArray($obj){
         $json = json_encode($obj);
@@ -115,6 +116,11 @@ class Helper {
     /**
      * $changeStrArray = array([{'changeStr': "source str"}],[{'changeToStr',"target Str"}])
      * $changeFromPreg = array([{'changePreg': "php preg"}],[{'changeToStr': "target Str"}])
+     * @param string $contentResponse
+     * @param string $sUrlKey
+     * @param array $changeStrArray
+     * @param array $changeFromPreg
+     * 
      */
     public function getWX($contentResponse,$sUrlKey,$changeStrArray=array(),$changeFromPreg=array()){
 
@@ -174,7 +180,6 @@ class Helper {
         $this->imgWX = $this->image_url .$arrSrcList[0][1];
     }
 
-
     public function createDIR($path){
         //if path exists and echo text, else create path
         if (is_dir($path)){
@@ -233,6 +238,29 @@ class Helper {
         }
 
        
+    }
+
+    /**
+     * check the string format
+     * @param mixed $str
+     * @param string $type
+     * @param int $length
+     */
+    public function checkParamFormat($str,$type,$length=20){
+        switch($type){
+            case 'int':
+                $string = is_numeric($str) ? $str : 'null'; //check is_numeric
+                $string = strlen($string) < $length ? $string : 'null'; //check length
+                break;
+            case 'string':
+                $string = is_string($str) ? $str : 'null';
+                $string = strlen($string) < $length ? $string : 'null';
+                break;
+            default:
+                $string = 'null';
+                break;
+        }
+        return $string;
     }
 
 }
