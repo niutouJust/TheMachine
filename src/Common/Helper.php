@@ -5,6 +5,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use Machine\Common\Message;
+
 class Helper {
 
 
@@ -30,7 +32,7 @@ class Helper {
      * @internal param $array
      * @internal param $data
      */
-    public function composeData($param,$values, $type=0,$user)
+    public static function composeData($param,$values, $type=0,$user)
     {
         $data = array();
 
@@ -69,7 +71,7 @@ class Helper {
      * @return mixed
      * @internal param $connect
      */
-    public function checkRepeat($table, $where, $con=null)
+    public static function checkRepeat($table, $where, $con=null)
     {
 
         // TODO: Implement checkRepeat() method.
@@ -86,7 +88,7 @@ class Helper {
      * Get a 16 string 
      *  @param int $length
      */
-    public function getRand16String($length=16){
+    public static function getRand16String($length=16){
         if ($length > 60){
             return 'The Length is Fail, Do not greater than 60';
         }
@@ -105,7 +107,7 @@ class Helper {
      * just a format to other format
      * @param object $obj
      */
-    public function getObjToJsonToArray($obj){
+    public static function getObjToJsonToArray($obj){
         $json = json_encode($obj);
 
         $array = json_decode($json,true);
@@ -122,7 +124,7 @@ class Helper {
      * @param array $changeFromPreg
      * 
      */
-    public function getWX($contentResponse,$sUrlKey,$changeStrArray=array(),$changeFromPreg=array()){
+    public static function getWX($contentResponse,$sUrlKey,$changeStrArray=array(),$changeFromPreg=array()){
 
         $sPatTitle = '/<meta property=\"og:title\" content=\"(.*?)" \/>/';
         $sPatBody = '/id=\"js_content\" style=\"visibility: hidden;\">(.*?)<\/div>/is';
@@ -180,7 +182,7 @@ class Helper {
         $this->imgWX = $this->image_url .$arrSrcList[0][1];
     }
 
-    public function createDIR($path){
+    public static function createDIR($path){
         //if path exists and echo text, else create path
         if (is_dir($path)){
 //            echo "对不起！目录 " . $path . " 已经存在！";
@@ -195,7 +197,7 @@ class Helper {
         }
     }
 
-    public function file_upload_oss($url,$path){
+    public static function file_upload_oss($url,$path){
 
         $state = @file_get_contents($url,0,null,0,1);// get the image content
 
@@ -246,15 +248,15 @@ class Helper {
      * @param string $type
      * @param int $length
      */
-    public function checkParamFormat($str,$type,$length=20){
+    public static function checkParamFormat($str,$type,$length=20){
         switch($type){
             case 'int':
-                $string = is_numeric($str) ? $str : 'null'; //check is_numeric
-                $string = strlen($string) < $length ? $string : 'null'; //check length
+                $string = is_numeric($str) ? $str : Message::$ERROR_LENGTH_FORMAT ; //check is_numeric
+                $string = strlen($string) < $length ? $string : Message::$ERROR_LENGTH_FORMAT; //check length
                 break;
             case 'string':
-                $string = is_string($str) ? $str : 'null';
-                $string = strlen($string) < $length ? $string : 'null';
+                $string = is_string($str) ? $str : Message::$ERROR_LENGTH_FORMAT;
+                $string = strlen($string) < $length ? $string : Message::$ERROR_LENGTH_FORMAT;
                 break;
             default:
                 $string = 'null';
