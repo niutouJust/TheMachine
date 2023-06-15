@@ -246,7 +246,7 @@ class Helper {
      * @param string $type
      * @param int $length
      */
-    static function checkParamFormat($str,$type,$length=20){
+    public function checkParamFormat($str,$type,$length=20){
         switch($type){
             case 'int':
                 $string = is_numeric($str) ? $str : 'null'; //check is_numeric
