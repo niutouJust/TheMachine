@@ -124,7 +124,7 @@ class Helper {
      * @param array $changeFromPreg
      * 
      */
-    public static function getWX($contentResponse,$sUrlKey,$changeStrArray=array(),$changeFromPreg=array()){
+    public function getWX($contentResponse,$sUrlKey,$changeStrArray=array(),$changeFromPreg=array()){
 
         $sPatTitle = '/<meta property=\"og:title\" content=\"(.*?)" \/>/';
         $sPatBody = '/id=\"js_content\" style=\"visibility: hidden;\">(.*?)<\/div>/is';
@@ -182,7 +182,7 @@ class Helper {
         $this->imgWX = $this->image_url .$arrSrcList[0][1];
     }
 
-    public static function createDIR($path){
+    public function createDIR($path){
         //if path exists and echo text, else create path
         if (is_dir($path)){
 //            echo "对不起！目录 " . $path . " 已经存在！";
