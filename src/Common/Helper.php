@@ -252,11 +252,11 @@ class Helper {
         switch($type){
             case 'int':
                 $string = is_numeric($str) ? $str : Message::$ERROR_LENGTH_FORMAT ; //check is_numeric
-                $string = strlen($string) < $length ? $string : Message::$ERROR_LENGTH_FORMAT; //check length
+                $string = strlen($string) <= $length ? $string : Message::$ERROR_LENGTH_FORMAT; //check length
                 break;
             case 'string':
                 $string = is_string($str) ? $str : Message::$ERROR_LENGTH_FORMAT;
-                $string = strlen($string) < $length ? $string : Message::$ERROR_LENGTH_FORMAT;
+                $string = strlen($string) <= $length ? $string : Message::$ERROR_LENGTH_FORMAT;
                 break;
             default:
                 $string = 'null';
