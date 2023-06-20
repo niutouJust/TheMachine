@@ -9,10 +9,10 @@ class Message {
     public static $ERROR_SOFT_DELETE = ['code'=>"400",'msg'=>"请恢复软删除后，再强制删除",'msgE'=>'Please restore soft delete'];
 
 
-    public function INFO_AND_TIME($param,$id=0){
-        $response['result'] = $param;
+    public function INFO_AND_TIME($param,$result=null){
+        $response['info'] = $param;
         $response['time'] = time();
-        $response['id'] = $id;
+        $response['result'] = $result;
         return $response;
     }
 
